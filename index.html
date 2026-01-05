@@ -22,6 +22,8 @@
             --text-light: #555;     /* Lighter text for descriptions */
             --border-color: #e0e0e0;   /* Subtle border color */
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Soft, modern shadow */
+            --success-color: #28a745;
+            --info-color: #17a2b8;
         }
 
         /* Basic Reset */
@@ -134,22 +136,45 @@
             font-size: 1.15em;
             color: var(--text-light);
         }
-        /* Keeping the vibrant green button for a clear call-to-action */
-        .notes-button {
-            display: inline-block;
-            background: linear-gradient(90deg, #28a745 0%, #218838 100%);
+        
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .resource-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             color: white;
             padding: 16px 35px;
             text-decoration: none;
             border-radius: 50px;
-            font-size: 1.25em;
+            font-size: 1.15em;
             font-weight: 700;
             transition: all 0.3s ease;
+            min-width: 250px;
             box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
         }
-        .notes-button:hover {
+        
+        .resource-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+        }
+        
+        .resource-button.workbook {
+            background: linear-gradient(135deg, var(--success-color) 0%, #218838 100%);
+        }
+        
+        .resource-button.word {
+            background: linear-gradient(135deg, var(--info-color) 0%, #138496 100%);
+            box-shadow: 0 5px 15px rgba(23, 162, 184, 0.3);
+        }
+        
+        .resource-button.word:hover {
+            box-shadow: 0 8px 20px rgba(23, 162, 184, 0.4);
         }
 
         /* Lecture Section */
@@ -157,6 +182,34 @@
             color: var(--text-light);
             font-style: italic;
             font-size: 1.1em;
+        }
+
+        /* Video Responsive */
+        .video-responsive {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-responsive iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Lecture Titles */
+        .card-body h3 {
+            color: var(--primary-color);
+            margin: 25px 0 15px 0;
+            font-size: 1.3em;
         }
 
         /* Responsive Design */
@@ -172,6 +225,14 @@
             }
             .card-body {
                 padding: 20px;
+            }
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            .resource-button {
+                width: 100%;
+                max-width: 300px;
             }
         }
     </style>
@@ -201,13 +262,18 @@
 
         <section class="content-card">
             <div class="card-header">
-                <h2>Course Workbook 📒</h2>
+                <h2>Course Resources 📒</h2>
             </div>
             <div class="card-body notes-section">
-                <p>This comprehensive Excel workbook contains all course materials, including lecture notes, practice problems, and key formulas, in one convenient place.</p>
-                <a class="notes-button" href="https://mypac-my.sharepoint.com/:x:/g/personal/shay_tsaban_pac_org_il/Ee3Ek_R61BNOlFrDpv8mxZYBulji3kIzRktk44KmnTmQ4w?e=Rm93Va" target="_blank" rel="noopener noreferrer">
-                    Access Course Workbook
-                </a>
+                <p>Access all course materials including the Excel workbook and Word documents with detailed notes.</p>
+                <div class="button-group">
+                    <a class="resource-button workbook" href="https://mypac-my.sharepoint.com/:x:/g/personal/shay_tsaban_pac_org_il/Ee3Ek_R61BNOlFrDpv8mxZYBulji3kIzRktk44KmnTmQ4w?e=Rm93Va" target="_blank" rel="noopener noreferrer">
+                        Access Course Workbook
+                    </a>
+                    <a class="resource-button word" href="https://mypac-my.sharepoint.com/:w:/g/personal/shay_tsaban_pac_org_il/IQChbQS68PXVRalIflW4AAxtAb36QJ0o5TH2ml8n5Bm_gRc?e=Td34TE" target="_blank" rel="noopener noreferrer">
+                        Course Notes (Word)
+                    </a>
+                </div>
             </div>
         </section>
 
