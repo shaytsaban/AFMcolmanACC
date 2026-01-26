@@ -1,443 +1,488 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advanced Financial Management - 2026 A</title>
-    
+
+    <!-- Modern Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600&family=Heebo:wght@400;700&display=swap"
+        rel="stylesheet">
 
     <style>
-        /* * === NEW COLOR THEME ===
-         * A professional deep teal/green, distinct from the previous blue.
-         */
         :root {
-            --primary-color: #004d40; /* A deep, professional teal */
-            --secondary-color: #00796b; /* A slightly lighter teal for accents */
-            --light-bg: #f5f7fa;      /* A very light grey for the page background */
-            --card-bg: #ffffff;         /* White for content cards */
-            --text-color: #333;       /* Dark grey for readable text */
-            --text-light: #555;     /* Lighter text for descriptions */
-            --border-color: #e0e0e0;   /* Subtle border color */
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Soft, modern shadow */
-            --success-color: #28a745;
-            --info-color: #17a2b8;
+            /* Palette: Modern Deep Teal & Emerald */
+            --primary: #0f766e;
+            /* Deep Teal */
+            --primary-dark: #115e59;
+            --secondary: #10b981;
+            /* Emerald Green */
+            --accent: #f59e0b;
+            /* Gold/Amber for highlights */
+
+            --bg-page: #f0fdfa;
+            /* Very light mint/white */
+            --bg-surface: #ffffff;
+
+            --text-main: #1e293b;
+            /* Slate 800 */
+            --text-muted: #64748b;
+            /* Slate 500 */
+
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+            --radius: 16px;
         }
 
-        /* Basic Reset */
-        *, *::before, *::after {
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        /* Body Styling */
         body {
-            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-            background-color: var(--light-bg);
-            color: var(--text-color);
-            line-height: 1.7;
-            font-weight: 300;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Header Bar */
-        .course-header {
-            background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        .course-header h1 {
-            font-family: 'Lato', sans-serif;
-            font-size: 2.5em;
+        h1,
+        h2,
+        h3 {
+            font-family: 'Outfit', sans-serif;
             font-weight: 700;
-            margin-bottom: 10px;
-        }
-        .course-header p {
-            font-size: 1.2em;
-            font-weight: 300;
-            opacity: 0.9;
+            color: var(--primary-dark);
         }
 
-        /* Main Content Container */
-        .container {
-            max-width: 960px;
-            margin: -50px auto 40px auto; /* Pulls container up into header's shadow */
-            padding: 20px;
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--secondary);
+        }
+
+        /* HERO SECTION */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 4rem 1.5rem 6rem;
+            /* Extra padding bottom for overlap */
+            text-align: center;
             position: relative;
-            z-index: 2;
+            overflow: hidden;
         }
 
-        /* Base Card Styling */
-        .content-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
-            margin-bottom: 30px;
-            overflow: hidden; /* To contain border-radius */
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.2), transparent 40%);
+        }
+
+        header h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+
+        header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.25rem;
+            font-weight: 300;
+            position: relative;
+        }
+
+        /* MAIN LAYOUT */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto 4rem;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* CARDS */
+        .card {
+            background: var(--bg-surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(15, 118, 110, 0.05);
+            transform: translateY(-2rem);
+            /* Pull up overlap */
+            transition: transform 0.3s ease;
+        }
+
+        .card:first-child {
+            margin-top: 0;
+        }
+
+        /* Reset transform for subsequent cards so they list normally */
+        .container .card:not(:first-child) {
+            transform: translateY(0);
+            margin-top: 0;
         }
 
         .card-header {
-            padding: 25px 30px;
-            border-bottom: 1px solid var(--border-color);
-            background-color: #fafbfd;
-        }
-        .card-header h2 {
-            color: var(--primary-color); /* Uses new theme color */
-            font-family: 'Lato', sans-serif;
-            font-size: 1.8em;
-            font-weight: 700;
-        }
-
-        .card-body {
-            padding: 30px;
-        }
-
-        /* Instructor Info Card */
-        .instructor-info {
-            font-size: 1.1em;
-        }
-        .instructor-info strong {
-            font-weight: 700;
-            color: var(--text-color);
-        }
-        .instructor-info a {
-            color: var(--secondary-color); /* Uses new theme color */
-            text-decoration: none;
-            font-weight: 700;
-            transition: color 0.3s ease;
-        }
-        .instructor-info a:hover {
-            color: var(--primary-color);
-            text-decoration: underline;
-        }
-
-        /* Course Description */
-        .card-body p {
-            font-size: 1.1em;
-            color: var(--text-light);
-            margin-bottom: 15px;
-        }
-        .card-body p strong {
-            font-weight: 700;
-            color: var(--text-color);
-        }
-
-        /* Notes Button Section */
-        .notes-section {
-            text-align: center;
-        }
-        .notes-section p {
-            margin-bottom: 25px;
-            font-size: 1.15em;
-            color: var(--text-light);
-        }
-        
-        .button-group {
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 1rem;
             display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
         }
-        
-        .resource-button {
+
+        .card h2 {
+            font-size: 1.75rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* BUTTONS */
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 99px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
             color: white;
-            padding: 16px 35px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.15em;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            min-width: 250px;
-            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
-        }
-        
-        .resource-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
-        }
-        
-        .resource-button.workbook {
-            background: linear-gradient(135deg, var(--success-color) 0%, #218838 100%);
-        }
-        
-        .resource-button.word {
-            background: linear-gradient(135deg, var(--info-color) 0%, #138496 100%);
-            box-shadow: 0 5px 15px rgba(23, 162, 184, 0.3);
-        }
-        
-        .resource-button.word:hover {
-            box-shadow: 0 8px 20px rgba(23, 162, 184, 0.4);
         }
 
-        /* Lecture Section */
-        .placeholder-text {
-            color: var(--text-light);
-            font-style: italic;
-            font-size: 1.1em;
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(15, 118, 110, 0.3);
+            color: white;
         }
 
-        /* Video Responsive */
-        .video-responsive {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: #f0fdfa;
+            transform: translateY(-2px);
+        }
+
+        /* VIDEO GRID */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Lecture Item */
+        .lecture-item {
+            background: #fff;
+            border-radius: 12px;
             overflow: hidden;
-            max-width: 100%;
-            margin: 20px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .video-responsive iframe {
+        .lecture-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--secondary);
+        }
+
+        .lecture-title {
+            padding: 1rem 1.25rem 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            line-height: 1.4;
+        }
+
+        .lecture-date {
+            padding: 0 1.25rem 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 */
+            background: #000;
+        }
+
+        .video-wrapper iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border: 0;
+            border: none;
         }
 
-        /* Lecture Titles */
-        .card-body h3 {
-            color: var(--primary-color);
-            margin: 25px 0 15px 0;
-            font-size: 1.3em;
+        /* ALERT BOX (For Lecture 13) */
+        .alert-box {
+            background-color: #fef2f2;
+            border: 1px solid #fee2e2;
+            border-right: 4px solid #ef4444;
+            /* RTL marker */
+            color: #b91c1c;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem;
+            font-family: 'Heebo', sans-serif;
+            /* Hebrew Font */
+            direction: rtl;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
         }
 
-        /* Responsive Design */
+        .alert-icon {
+            font-size: 1.2rem;
+        }
+
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .course-header h1 {
-                font-size: 2em;
+            header h1 {
+                font-size: 2rem;
             }
-            .container {
-                margin-top: -30px;
+
+            .card {
+                padding: 1.5rem;
             }
-            .card-header h2 {
-                font-size: 1.5em;
-            }
-            .card-body {
-                padding: 20px;
-            }
-            .button-group {
-                flex-direction: column;
-                align-items: center;
-            }
-            .resource-button {
-                width: 100%;
-                max-width: 300px;
+
+            .video-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
+
 <body>
 
-    <header class="course-header">
+    <header>
         <h1>Advanced Financial Management</h1>
-        <p>Semester 2026 A</p>
+        <p>Semester 2026 A | Dr. Shay Tsaban</p>
     </header>
 
     <main class="container">
 
-        <section class="content-card">
+        <!-- INTRO CARD -->
+        <section class="card">
             <div class="card-header">
-                <h2>Welcome to the Course 📊</h2>
+                <h2>👋 Welcome to the Course</h2>
             </div>
-            <div class="card-body">
-                <p>Welcome to Advanced Financial Management. This course builds on foundational finance principles to explore complex corporate financial decisions. We will cover topics like <strong>advanced capital budgeting</strong>, <strong>risk analysis</strong>, <strong>capital structure theory</strong>, <strong>valuation models</strong>, and <strong>mergers & acquisitions</strong>. The goal is to equip you with the analytical tools needed for high-level financial decision-making.</p>
-                <hr style="border: 0; height: 1px; background: var(--border-color); margin: 25px 0;">
-                <div class="instructor-info">
-                    <p><strong>Instructor:</strong> Dr. Shay Tsaban, Ph.D.</p>
-                    <p><strong>Contact:</strong> <a href="mailto:shay.tsaban@gmail.com">shay.tsaban@gmail.com</a></p>
-                </div>
+            <p>
+                This advanced course builds on fundamental finance principles to explore complex corporate strategies.
+                We will dive deep into <strong>Capital Budgeting</strong>, <strong>Risk Analysis</strong>,
+                <strong>Valuation Models</strong>, and <strong>M&A</strong> mechanics.
+            </p>
+            <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9;">
+                <p><strong>Instructor:</strong> Dr. Shay Tsaban, Ph.D.</p>
+                <p><strong>Contact:</strong> <a href="mailto:shay.tsaban@gmail.com">shay.tsaban@gmail.com</a></p>
             </div>
         </section>
 
-        <section class="content-card">
+        <!-- RESOURCES CARD -->
+        <section class="card">
             <div class="card-header">
-                <h2>Course Resources 📒</h2>
+                <h2>📚 Course Resources</h2>
             </div>
-            <div class="card-body notes-section">
-                <p>Access all course materials including the Excel workbook and Word documents with detailed notes.</p>
-                <div class="button-group">
-                    <a class="resource-button workbook" href="https://mypac-my.sharepoint.com/:x:/g/personal/shay_tsaban_pac_org_il/Ee3Ek_R61BNOlFrDpv8mxZYBulji3kIzRktk44KmnTmQ4w?e=Rm93Va" target="_blank" rel="noopener noreferrer">
-                        Access Course Workbook
-                    </a>
-                    <a class="resource-button word" href="https://mypac-my.sharepoint.com/:w:/g/personal/shay_tsaban_pac_org_il/IQChbQS68PXVRalIflW4AAxtAb36QJ0o5TH2ml8n5Bm_gRc?e=Td34TE" target="_blank" rel="noopener noreferrer">
-                        Course Notes (Word)
-                    </a>
-                </div>
+            <p>Access the official course materials. Please ensure you have the Excel workbook open during lectures.</p>
+
+            <div class="btn-group">
+                <a href="https://mypac-my.sharepoint.com/:x:/g/personal/shay_tsaban_pac_org_il/Ee3Ek_R61BNOlFrDpv8mxZYBulji3kIzRktk44KmnTmQ4w?e=Rm93Va"
+                    target="_blank" class="btn btn-primary">
+                    📊 Download Excel Workbook
+                </a>
+                <a href="https://mypac-my.sharepoint.com/:w:/g/personal/shay_tsaban_pac_org_il/IQChbQS68PXVRalIflW4AAxtAb36QJ0o5TH2ml8n5Bm_gRc?e=Td34TE"
+                    target="_blank" class="btn btn-secondary">
+                    📝 Course Syllabus & Notes
+                </a>
             </div>
         </section>
 
-      <section class="content-card">
-    <div class="card-header">
-        <h2>Group 01 - Lecture Recordings 🎥</h2>
-    </div>
-    <div class="card-body">
-        <p class="placeholder-text">Recordings for Group 01 will be uploaded here shortly after each live session.</p>
-        
-        <h3>Lecture 1: Basics of Bonds Calculations - 3.11.2025</h3>
-        
-        <div class="video-responsive">
-            <iframe 
-                src="https://www.youtube.com/embed/IbQo7tW7PdM" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-        </div>
+        <!-- VIDEOS CARD -->
+        <section class="card">
+            <div class="card-header">
+                <h2>🎥 Lecture Recordings <span
+                        style="font-size:1rem; color:var(--text-muted); font-weight:400; margin-left:auto;">Group
+                        01</span></h2>
+            </div>
 
-          <h3>Lecture 2: Bonds - Time Adjustments, Yield Calculations - 10.11.2025</h3>
-        
-        <div class="video-responsive">
-            <iframe 
-                src="https://www.youtube.com/embed/OOmGc-oFgl0" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-        </div>
+            <div class="video-grid">
 
-         <h3>Lecture 3: Bonds - Additional Yield Calculations, HPR calculations - 17.11.2025</h3>
-        
-        <div class="video-responsive">
-            <iframe 
-                src="https://www.youtube.com/embed/z6laa_pmZhs" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-        </div>
+                <!-- Lecture 1 -->
+                <article class="lecture-item">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/IbQo7tW7PdM" allowfullscreen></iframe>
+                    </div>
+                    <div class="lecture-title">1. Basics of Bonds Calculations</div>
+                    <div class="lecture-date">3.11.2025</div>
+                </article>
 
+                <!-- Lecture 2 -->
+                <article class="lecture-item">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/OOmGc-oFgl0" allowfullscreen></iframe>
+                    </div>
+                    <div class="lecture-title">2. Bonds: Time Adjustments & Yield</div>
+                    <div class="lecture-date">10.11.2025</div>
+                </article>
 
-          <h3>Lecture 4: Bonds - HPR calculations, Zero Coupon Bonds (Makam), Infinite Life Bonds, Duration - 24.11.2025</h3>
-        
-        <div class="video-responsive">
-            <iframe 
-                src="https://www.youtube.com/embed/Taby39zuDeo" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-        </div>
+                <!-- Lecture 3 -->
+                <article class="lecture-item">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/z6laa_pmZhs" allowfullscreen></iframe>
+                    </div>
+                    <div class="lecture-title">3. HPR Calculation & Yields</div>
+                    <div class="lecture-date">17.11.2025</div>
+                </article>
 
-         <h3>Lecture 5: Bonds - Linkaged Bonds - 1.12.2025</h3>
-        
-        <div class="video-responsive">
-            <iframe 
-                src="https://www.youtube.com/embed/ZnWibckNrA0" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-        </div>
+                <!-- Lecture 4 -->
+                <article class="lecture-item">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/Taby39zuDeo" allowfullscreen></iframe>
+                    </div>
+                    <div class="lecture-title">4. Duration & Zero Coupon Bonds</div>
+                    <div class="lecture-date">24.11.2025</div>
+                </article>
 
-         <h3>Lecture 6: Shares - Basics of Pricing Principles - 8.12.2025</h3>
-        
-        <div class="video-responsive">
-            <iframe 
-                src="https://www.youtube.com/embed/zxLZHDfeduQ" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-        </div>
+                <!-- Lecture 5 -->
+                <article class="lecture-item">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/ZnWibckNrA0" allowfullscreen></iframe>
+                    </div>
+                    <div class="lecture-title">5. Linkage Principles</div>
+                    <div class="lecture-date">1.12.2025</div>
+                </article>
 
-          <h3>Lecture 7: Shares - Advanced Pricing Principles - 15.12.2025</h3>
-        
-        <div class="video-responsive">
-            <iframe 
-                src="https://www.youtube.com/embed/0HnpqXyCjkQ" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-        </div>
+                <!-- Lecture 6 -->
+                <article class="lecture-item">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/zxLZHDfeduQ" allowfullscreen></iframe>
+                    </div>
+                    <div class="lecture-title">6. Share Pricing: Basics</div>
+                    <div class="lecture-date">8.12.2025</div>
+                </article>
 
+                <!-- Lecture 7 -->
+                <article class="lecture-item">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/0HnpqXyCjkQ" allowfullscreen></iframe>
+                    </div>
+                    <div class="lecture-title">7. Share Pricing: Advanced</div>
+                    <div class="lecture-date">15.12.2025</div>
+                </article>
 
-         <h3>Lecture 8: WACC - Weighted Average Cost of Capital - 22.12.2025</h3>
-        
-        <div class="video-responsive">
-            <iframe 
-                src="https://www.youtube.com/embed/XDhu-0OiMaE" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-        </div>
+                <!-- Lecture 8 -->
+                <article class="lecture-item">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/XDhu-0OiMaE" allowfullscreen></iframe>
+                    </div>
+                    <div class="lecture-title">8. WACC Introduction</div>
+                    <div class="lecture-date">22.12.2025</div>
+                </article>
 
-         <h3>Lecture 9: WACC and Corporate Value (V) - Modigliani and Miller Model (M&M) - 29.12.2025</h3>
-        
-        <div class="video-responsive">
-            <iframe 
-                src="https://www.youtube.com/embed/PEWVhNabPEw" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-        </div>
+                <!-- Lecture 9 -->
+                <article class="lecture-item">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/PEWVhNabPEw" allowfullscreen></iframe>
+                    </div>
+                    <div class="lecture-title">9. Modigliani & Miller (M&M) I</div>
+                    <div class="lecture-date">29.12.2025</div>
+                </article>
 
+                <!-- Lecture 10 -->
+                <article class="lecture-item">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/c1wzIhPKa4M" allowfullscreen></iframe>
+                    </div>
+                    <div class="lecture-title">10. M&M Advanced Exercise</div>
+                    <div class="lecture-date">5.1.2026</div>
+                </article>
 
-         <h3>Lecture 10: Modigliani and Miller Model (M&M) - Advanced Exercise - 5.1.2026</h3>
-        
-        <div class="video-responsive">
-            <iframe 
-                src="https://www.youtube.com/embed/c1wzIhPKa4M" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-        </div>
+                <!-- Lecture 11 -->
+                <article class="lecture-item">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/aKh588hhGBQ" allowfullscreen></iframe>
+                    </div>
+                    <div class="lecture-title">11. M&M Theory & Arbitrage II</div>
+                    <div class="lecture-date">12.1.2026</div>
+                </article>
 
-         <h3>Lecture 11: Modigliani and Miller Model (M&M) - Advanced Exercise Part 2 - Additional Arbitrage and Theory - 12.1.2026</h3>
-        
-        <div class="video-responsive">
-            <iframe 
-                src="https://www.youtube.com/embed/aKh588hhGBQ" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-        </div>
+                <!-- Lecture 12 -->
+                <article class="lecture-item">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/y0dRfVrTti8" allowfullscreen></iframe>
+                    </div>
+                    <div class="lecture-title">12. Leasing vs. Buying</div>
+                    <div class="lecture-date">19.1.2026</div>
+                </article>
 
- <h3>Lecture 12: Leasing vs. Buying - 19.1.2026</h3>
-        
-        <div class="video-responsive">
-            <iframe 
-                src="https://www.youtube.com/embed/y0dRfVrTti8" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-        </div>
+                <!-- Lecture 13 -->
+                <article class="lecture-item" style="border-color: #fca5a5; position: relative; overflow: visible;">
 
+                    <div class="video-wrapper" style="border-radius: 12px 12px 0 0; overflow:hidden;">
+                        <iframe src="https://www.youtube.com/embed/RfCEjlgZtxlCUuw_" allowfullscreen></iframe>
+                    </div>
+                    <div class="lecture-title">13. Reversal Class (Special)</div>
+                    <div class="lecture-date">26.1.2026</div>
 
-    </div>
-</section>
+                    <!-- HEBREW ALERT -->
+                    <div class="alert-box">
+                        <span class="alert-icon">⚠️</span>
+                        <div>
+                            <strong>שים לב:</strong>
+                            הקלטה זו היא משנה שעברה. הואיל ולא הגיעו סטודנטים להרצאה - יש להתעלם מההסבר על מבנה המבחן
+                            המופיע בתחילת השיעור.
+                        </div>
+                    </div>
 
-    
+                </article>
+
+            </div>
+        </section>
 
     </main>
 
 </body>
+
 </html>
